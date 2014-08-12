@@ -1,0 +1,112 @@
+body {
+	text-transform: uppercase;
+	font-family: sans-serif;
+	text-align: center;
+
+}
+
+#main {
+	display: inline-block;
+	border: thin dotted black;
+	padding: 10px;
+}
+
+#main h1 {
+	margin-bottom: 8px;
+	margin-top: 0;
+	background-color: black;
+	color: white;
+}
+
+#main a {
+	text-transform: none;
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	margin-top: 8px;
+	transition: background-color .25s, color .25s;
+	padding: 4px;
+}
+
+#main a:hover {
+	background-color: black;
+	color: white;
+}
+
+#grids {
+	display: block;
+	padding: 0;
+}
+
+#noteTable, #glideTable {
+	border-collapse: collapse;
+	background-color: red;
+}
+
+#glideTable {
+	margin: 8px 0px;
+}
+
+.glideCell, .noteCell {
+	border: thin solid black;
+	width: 20px;
+	height: 10px;
+	background-color: white;
+	transition: background-color .125s, opacity .125s;
+}
+
+#controls {
+	margin-top: 8px;
+	display: block;
+	border: thin dashed black;
+	height: 100%;
+	padding: 4px;
+	
+}
+
+#controls p {
+	text-align: left;
+	padding: 0;
+	margin: 0;
+}
+
+#transport {
+	width: 100%;
+	text-align: center;
+}
+
+#transport td {
+	width: 33%;
+	height: 50px;
+	border: thin solid black;
+	transition: color .125s, background-color .125s;
+}
+
+#transport td:hover {
+	color: white;
+	background-color: black;
+}
+
+#sliders {
+	width: 100%;
+	border-collapse: none;
+}
+#radios{
+	text-align: center;
+	margin: auto auto;
+}
+
+#radios input{
+	display: inline-block;
+	width: 40%;
+	height: 100%;
+}
+
+#sliders td{
+	
+	height: 100%;
+	padding: 0 8px;
+	margin: 0px;
+	
+
+}

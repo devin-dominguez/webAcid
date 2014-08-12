@@ -1,0 +1,93 @@
+<!doctype HTML>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+
+</head>
+
+
+<body>
+	<div id="main">
+		<h1>Web Acid</h1>
+		<div id="grids">
+			<table id="noteTable"></table>
+			<table id="glideTable"></table>
+		</div>
+		<div id="controls">
+
+			<table id="transport">
+				<tr>
+					<td id="playButton">Play</td>
+					<td id="randomButton">Random</td>
+					<td id="clearButton">Clear</td>
+				</tr>
+			</table>
+			
+			<table id="sliders">
+				<tr>
+					<td id="radios">
+						<input type="radio" name="waveform" value="saw" checked="checked"></input> 
+						<input type="radio" name="waveform" value="square"></input> 
+					</td>
+					<td><p>Waveform</p></td>
+				</tr>
+			
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="cutoffSlider"></input> </td>
+					<td><p>Cutoff</p></td>
+				</tr>
+				
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="resonanceSlider"></input> </td>
+					<td><p>Resonance</p></td>
+				</tr>
+				
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="attackSlider"></input> </td>
+					<td><p>Attack</p></td>
+				</tr>
+				
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="releaseSlider"></input> </td>
+					<td><p>Release</p></td>
+				</tr>
+				
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="glideSlider"></input> </td>
+					<td><p>Glide</p<</td>
+				</tr>
+				
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="delaySlider"></input> </td>
+					<td><p>Delay</p<</td>
+
+				</tr>
+				
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="volumeSlider"></input> </td>
+					<td><p>Volume</p></td>
+
+				</tr>
+				
+				<tr>
+					<td> <input type="range" min="0" max="1" step=".0001" id="tempoSlider"></input> </td>
+					<td><p>Tempo</p></td>
+	
+				</tr>
+		
+			</table>
+	
+		</div>
+		<a href="http://www.dominguezaudio.com" target="_blank">www.dominguezaudio.com</a>
+		
+	</div>
+	
+	
+	<script src="dac.js"></script>
+	<script src="acidSynth.js"></script>
+	<script src="sequencer.js"></script>
+	<script src="gui.js">Javascript is needed :(</script>
+</body>
+
+</html>
