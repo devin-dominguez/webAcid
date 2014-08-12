@@ -215,5 +215,15 @@ volumeSlider.addEventListener("input", function() {
 	out.gain.value = this.value * .35;
 });
 
+var sawRadio = document.getElementById("sawRadio");
+sawRadio.addEventListener("change", function() {
+	synth.osc.type = "sawtooth";
+});
+
+var squareRadio = document.getElementById("squareRadio");
+squareRadio.addEventListener("change", function() {
+	synth.osc.type = "square";
+});
+
 
 randomize();
