@@ -9,6 +9,10 @@ body {
 	display: inline-block;
 	border: thin dotted black;
 	padding: 10px;
+	
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;  
 }
 
 #main h1 {
@@ -16,6 +20,7 @@ body {
 	margin-top: 0;
 	background-color: black;
 	color: white;
+	cursor: default;
 }
 
 #main a {
@@ -34,9 +39,11 @@ body {
 }
 
 #canvas  {
+	position: relative;
 	display: block;
 	padding: 4px;
 	border: thin solid black;
+	cursor: pointer;
 }
 
 
@@ -54,7 +61,7 @@ body {
 	border: thin dashed black;
 	height: 100%;
 	padding: 4px;
-	
+
 }
 
 #controls p {
@@ -68,11 +75,14 @@ body {
 	text-align: center;
 }
 
+
+
 #transport td {
 	width: 33%;
 	height: 50px;
 	border: thin solid black;
 	transition: color .125s, background-color .125s;
+	cursor: pointer;
 }
 
 #transport td:hover {
@@ -83,16 +93,24 @@ body {
 #sliders {
 	width: 100%;
 	border-collapse: none;
+
+	
 }
+#sliders  input{
+	cursor: pointer;
+}
+
 #radios{
 	text-align: center;
 	margin: auto auto;
+	
 }
 
 #radios input{
 	display: inline-block;
 	width: 40%;
 	height: 100%;
+	cursor: pointer;
 }
 
 #sliders td{
@@ -100,6 +118,7 @@ body {
 	height: 100%;
 	padding: 0 8px;
 	margin: 0px;
+	cursor: default;
 	
 
 }

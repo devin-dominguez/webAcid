@@ -31,9 +31,12 @@ var drawCells = function() {
 };
 
 canvas.addEventListener("click", function(e) {
-	var x = Math.floor((e.offsetX - 4) / xScale);
-	if( (e.offsetY - 4) < glideOffset - 5) {
-		var y = Math.floor((e.offsetY -4) / cellHeight);
+	var xRaw = e.offsetX || e.layerX;
+	var yRaw = e.offsetY || e.layerY;
+	
+	var x = Math.floor((xRaw - 4) / xScale);
+	if( (yRaw - 4) < glideOffset - 5) {
+		var y = Math.floor((yRaw -4) / cellHeight);
 		if(seq.note[x] === null || seq.note[x] !== seq.range-1-y) {
 			seq.note[x] = seq.range-1-y;
 			seq.trigger[x] = true;
@@ -48,7 +51,7 @@ canvas.addEventListener("click", function(e) {
 		}
 		
 	}
-	else if (e.offsetY - 4 > glideOffset) {
+	else if (yRaw - 4 > glideOffset) {
 		seq.glide[x] = !seq.glide[x];
 	}
 
