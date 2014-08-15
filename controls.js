@@ -13,7 +13,7 @@ playButton.addEventListener("click", function() {
 			playback.stop();
 			this.innerHTML = "Play";
 		}
-	});
+});
 
 var clearButton = document.getElementById("clearButton");
 clearButton.addEventListener("click", seq.init);
@@ -86,7 +86,7 @@ var tempoSlider = document.getElementById("tempoSlider");
 tempoSlider.value = (playback.tempo - 40) / 260;
 	tempoSlider.addEventListener("input", function() {
 		playback.tempo = tempoSlider.value * 260 + 40;
-	});
+});
 
 
 
