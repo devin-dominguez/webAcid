@@ -1,0 +1,78 @@
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+var xScale = (canvas.width - 1) / seq.size;
+var cellHeight = 15;
+var noteOffset = 0;
+var glideOffset = noteOffset + cellHeight * seq.range + 5;
+canvas.height = glideOffset + cellHeight + 1;
+ctx.translate(.5, .5);
+
+var drawCells = function() {
+	ctx.globalAlpha = 1.0;
+		
+	for(var x = 0; x < seq.size; x++) {
+	
+		ctx.strokeRect(x * xScale, glideOffset, xScale, cellHeight);
+		if(seq.glide[x]) {
+			ctx.fillStyle = "black";
+			ctx.fillRect(x * xScale, glideOffset, xScale, cellHeight);
+		}
+		
+		if(seq.note[x] !== null) {
+			seq.trigger[x] ? ctx.fillStyle = "black" : ctx.fillStyle = "gray";
+			ctx.fillRect(x * xScale, (seq.range - 1 - seq.note[x]) * cellHeight + noteOffset, xScale, cellHeight);
+		}
+		
+		for(var y = 0; y < seq.range; y++) {
+			ctx.strokeRect(x * xScale, y * cellHeight + noteOffset, xScale, cellHeight);
+		}
+	}
+};
+
+canvas.addEventListener("click", function(e) {
+	var x = Math.floor((e.offsetX - 4) / xScale);
+	if( (e.offsetY - 4) < glideOffset - 5) {
+		var y = Math.floor((e.offsetY -4) / cellHeight);
+		if(seq.note[x] === null || seq.note[x] !== seq.range-1-y) {
+			seq.note[x] = seq.range-1-y;
+			seq.trigger[x] = true;
+		}
+		else if(seq.note[x] !== null && seq.trigger[x]) {
+			seq.trigger[x] = false;
+		}
+		
+		else if(seq.note[x] !== null && !seq.trigger[x]) {
+			seq.note[x] = null;
+			seq.trigger[x] = true;
+		}
+		
+	}
+	else if (e.offsetY - 4 > glideOffset) {
+		seq.glide[x] = !seq.glide[x];
+	}
+
+	
+
+
+
+});
+
+var highlightCol = function(x) {
+	ctx.globalAlpha = 0.5;
+	ctx.fillStyle = "red";
+	ctx.fillRect(x * xScale, 0, xScale, noteOffset + cellHeight * seq.range);
+	ctx.fillRect(x * xScale, glideOffset, xScale, cellHeight);
+}
+
+function draw() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawCells();
+	if(playback.playing) {
+		highlightCol(playback.pos);
+	}
+	
+	requestAnimationFrame(draw);
+};
+
+draw();

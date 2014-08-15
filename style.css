@@ -33,19 +33,12 @@ body {
 	color: white;
 }
 
-#grids {
+#canvas  {
 	display: block;
-	padding: 0;
+	padding: 4px;
+	border: thin solid black;
 }
 
-#noteTable, #glideTable {
-	border-collapse: collapse;
-	background-color: red;
-}
-
-#glideTable {
-	margin: 8px 0px;
-}
 
 .glideCell, .noteCell {
 	border: thin solid black;
