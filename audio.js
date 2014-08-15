@@ -1,3 +1,5 @@
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 var audio = new AudioContext() || new webkitAudioContext();
 var out = audio.createGain();
 out.gain.value = .35;
