@@ -1,4 +1,4 @@
-var audio = new AudioContext();
+var audio = new AudioContext() || new webkitAudioContext();
 var out = audio.createGain();
 out.gain.value = .35;
 out.connect(audio.destination);
@@ -59,7 +59,7 @@ synth.adsr.connect(synth.cutoff);
 synth.osc = audio.createOscillator();
 synth.osc.type = "sawtooth";
 synth.osc.connect(synth.filter);
-synth.osc.start(0);
+synth.osc.noteOn(0);
 
 synth.amp.connect(out);
 synth.amp.connect(delayAmp);
