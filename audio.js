@@ -66,7 +66,9 @@ synth.adsr.connect(synth.cutoff);
 synth.osc = audio.createOscillator();
 synth.osc.type = "sawtooth";
 synth.osc.connect(synth.filter);
-synth.osc.noteOn(0);
+var turnOn = synth.osc.noteOn || synth.osc.start;
+turnOn.apply(synth.osc, [0]);
+//synth.osc.noteOn(0);
 
 synth.amp.connect(out);
 synth.amp.connect(delayAmp);
