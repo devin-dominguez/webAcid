@@ -26,14 +26,12 @@ imag[0]=0;
 imag[1]=0;
 
 var sig = audio.createOscillator();
-var sigWave;
-if(sigWave = audio.createPeriodicWave(real, imag)) {
-	sig.setPeriodicWave(sigWave);
-} 
-else {
-	var sigWave = audio.createWaveTable(real, imag);
-	sig.setWaveTable(sigWave);
-} 
+var waveFun = audio.createWaveTable || audio.createPeriodicWave;
+var sigWave = waveFun.apply(audio, [real, imag]);
+
+var waveSet = sig.setPeriodicWave || sig.setWaveTable;
+waveSet.apply(sig, [sigWave]);
+
 
 sig.frequency.value = 0;
 sig.start(0);
