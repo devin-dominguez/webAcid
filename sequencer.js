@@ -78,7 +78,7 @@ var scale = [1, 16/15, 4/3, 3/2, 8/5];
 function mtof(m) {
 	var pitch = scale[m % scale.length];
 	var octave = Math.floor(m / scale.length);
-	var freq = 40 * pitch * Math.pow(2, octave);
+	var freq = 60 * pitch * Math.pow(2, octave);
 	return freq;
 }
 
