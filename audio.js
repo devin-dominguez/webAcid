@@ -43,17 +43,25 @@ var synth = {
 };
 
 //synth stuff
+
+synth.adsrF = audio.createBiquadFilter();
+synth.adsrF.type = "lowpass";
+synth.adsrF.frequency.value = 64;
+synth.adsrF.Q.value = 0;
+
+
 synth.adsr = audio.createGain();
 synth.adsr.gain.value = 0;
 sig.connect(synth.adsr);
+synth.adsr.connect(synth.adsrF);
 
 synth.amp = audio.createGain();
 synth.amp.gain.value = 0;
-synth.adsr.connect(synth.amp.gain);
+synth.adsrF.connect(synth.amp.gain);
 
 
 synth.filter = audio.createBiquadFilter();
-synth.filter.type - "lowpass";
+synth.filter.type = "lowpass";
 synth.filter.frequency.value = 0;
 synth.filter.Q.value = 10;
 synth.filter.connect(synth.amp);
@@ -61,7 +69,7 @@ synth.filter.connect(synth.amp);
 synth.cutoff = audio.createGain();
 synth.cutoff.gain.value = 2500;
 synth.cutoff.connect(synth.filter.frequency);
-synth.adsr.connect(synth.cutoff);
+synth.adsrF.connect(synth.cutoff);
 
 synth.osc = audio.createOscillator();
 synth.osc.type = "sawtooth";
@@ -74,8 +82,10 @@ synth.amp.connect(out);
 synth.amp.connect(delayAmp);
 
 
-synth.playNote = function(freq, glide, trigger) {
-	var now = audio.currentTime;
+synth.playNote = function(freq, glide, trigger, t) {
+	var now;
+	t ? now = t : now = 0;
+	now += audio.currentTime;
 	var rate = 0;
 	if(glide) {
 		rate = synth.glideRate;
@@ -84,7 +94,8 @@ synth.playNote = function(freq, glide, trigger) {
 	
 	if(trigger) {
 		synth.adsr.gain.cancelScheduledValues(now);
-		synth.adsr.gain.setValueAtTime(synth.adsr.gain.value, now);
+		//synth.adsr.gain.setValueAtTime(synth.adsr.gain.value, now);
+		synth.adsr.gain.setValueAtTime(0, now);
 		synth.adsr.gain.linearRampToValueAtTime(1, now + synth.attackTime);
 		synth.adsr.gain.linearRampToValueAtTime(0, now + synth.attackTime + synth.decayTime);
 	}
