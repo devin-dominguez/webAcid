@@ -38,6 +38,7 @@ sig.start(0);
 
 var synth = {
 	attackTime: .01,
+	sustainTime: .1,
 	decayTime: .25,
 	glideRate: .05
 };
@@ -57,7 +58,7 @@ synth.adsr.connect(synth.adsrF);
 
 synth.amp = audio.createGain();
 synth.amp.gain.value = 0;
-synth.adsrF.connect(synth.amp.gain);
+synth.adsr.connect(synth.amp.gain);
 
 
 synth.filter = audio.createBiquadFilter();
@@ -69,7 +70,7 @@ synth.filter.connect(synth.amp);
 synth.cutoff = audio.createGain();
 synth.cutoff.gain.value = 2500;
 synth.cutoff.connect(synth.filter.frequency);
-synth.adsrF.connect(synth.cutoff);
+synth.adsr.connect(synth.cutoff);
 
 synth.osc = audio.createOscillator();
 synth.osc.type = "sawtooth";
@@ -84,8 +85,7 @@ synth.amp.connect(delayAmp);
 
 synth.playNote = function(freq, glide, trigger, t) {
 	var now;
-	t ? now = t : now = 0;
-	now += audio.currentTime;
+	t ? now = t : now = audio.currentTime;
 	var rate = 0;
 	if(glide) {
 		rate = synth.glideRate;
@@ -94,10 +94,9 @@ synth.playNote = function(freq, glide, trigger, t) {
 	
 	if(trigger) {
 		synth.adsr.gain.cancelScheduledValues(now);
-		//synth.adsr.gain.setValueAtTime(synth.adsr.gain.value, now);
-		synth.adsr.gain.setValueAtTime(0, now);
-		synth.adsr.gain.linearRampToValueAtTime(1, now + synth.attackTime);
-		synth.adsr.gain.linearRampToValueAtTime(0, now + synth.attackTime + synth.decayTime);
+		synth.adsr.gain.setTargetAtTime(1, now, synth.attackTime);
+		synth.adsr.gain.setTargetAtTime(0, now + synth.attackTime + .01, synth.decayTime);
+		
 	}
 };
 

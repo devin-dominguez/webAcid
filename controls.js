@@ -6,20 +6,26 @@ playButton.addEventListener("click", function() {
 			playback.playing = true;
 			playback.start();
 			this.innerHTML = "Stop";
-			
 		}
 		else {
 			playback.playing = false;
 			playback.stop();
 			this.innerHTML = "Play";
+			requestAnimationFrame(draw);
 		}
 });
 
 var clearButton = document.getElementById("clearButton");
-clearButton.addEventListener("click", seq.init);
+clearButton.addEventListener("click", function() {
+	seq.init();
+	requestAnimationFrame(draw);
+});
 
 var randomButton = document.getElementById("randomButton");
-randomButton.addEventListener("click", seq.randomize);
+randomButton.addEventListener("click", function() {
+	seq.randomize();
+	requestAnimationFrame(draw);
+});
 
 //WAVEFORM
 var squareRadio = document.getElementById("squareRadio");

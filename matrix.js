@@ -56,6 +56,7 @@ canvas.addEventListener("click", function(e) {
 	}
 
 	
+	requestAnimationFrame(draw);
 
 
 
@@ -68,14 +69,16 @@ var highlightCol = function(x) {
 	ctx.fillRect(x * xScale, glideOffset, xScale, cellHeight);
 }
 
+var lastD = 0;
+var hlCol = 0;
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawCells();
 	if(playback.playing) {
-		highlightCol(playback.pos);
+		highlightCol(hlCol);
 	}
 	
-	requestAnimationFrame(draw);
 };
 
 draw();

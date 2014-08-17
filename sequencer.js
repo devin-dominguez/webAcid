@@ -30,47 +30,62 @@ seq.randomize();
 var playback = {
 	pos: 0,
 	id: 0,
-	tempo: 115,
+	tempo: 120,
 	interval: 0,
-	dt: 0,
-	pt: 0,
-	playing: false
+	playing: false,
+	startTime: 0,
+	time: 0,
+	lookahead: .025
 };
+
+
+playback.increment = function() {
+	playback.pos = (playback.pos + 1) % seq.size;
+	playback.interval = 15 / playback.tempo;
+	delay.delayTime = 3 * playback.interval;
+	playback.time += playback.interval;
+};
+
 
 playback.update = function() {
-	playback.id = setTimeout(function() {
-		playback.pos = (playback.pos + 1) % seq.size;
-		
-		playback.triggerSynth(playback.pos);
-		
-		
-		playback.dt = audio.currentTime - playback.pt;
-		playback.pt = audio.currentTime;
-		
-		playback.interval = 15000 / (playback.tempo - playback.dt);
-		delay.delayTime.value = 3 * (playback.interval / 1000);
-		playback.update();
-		
-	}, playback.interval);
+	var currentTime = audio.currentTime;
+	currentTime -= playback.startTime; 
+	while(playback.time < currentTime + playback.lookahead) {
+		var playTime = playback.time + playback.startTime;	
+		playback.triggerSynth(playback.pos, playTime);
+		playback.increment();
+
+	if(playback.time != lastD) {
+
+		lastD = playback.time;
+
+		hlCol = (playback.pos + (seq.size - 1)) % seq.size;
+		requestAnimationFrame(draw);
+	}
+
+
+	}
+	playback.id = setTimeout(playback.update, 0);
 };
 
-playback.triggerSynth = function(pos) {;
+playback.triggerSynth = function(pos, t) {;
 	if(seq.note[pos] !== null) {
 		var freq = mtof(seq.note[pos]);
-		synth.playNote(freq, seq.glide[pos], seq.trigger[pos]);
+		synth.playNote(freq, seq.glide[pos], seq.trigger[pos], t);
 	
 	}
 }
 
 playback.start = function() {
-	playback.pt = audio.currentTime;
 	playback.pos = 0;
-	playback.triggerSynth(playback.pos);
-	playback.interval = 15000 / playback.tempo;
+	playback.time = 0;
+	playback.startTime = audio.currentTime + .005;
 	playback.update();
-}
+};
 
 playback.stop = function() {
+	
+	requestAnimationFrame(draw);
 	clearTimeout(playback.id);
 }
 
