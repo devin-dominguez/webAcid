@@ -35,14 +35,14 @@ var playback = {
 	playing: false,
 	startTime: 0,
 	time: 0,
-	lookahead: .025
+	lookahead: .05
 };
 
 
 playback.increment = function() {
 	playback.pos = (playback.pos + 1) % seq.size;
 	playback.interval = 15 / playback.tempo;
-	delay.delayTime = 3 * playback.interval;
+	delay.delayTime.value = 3 * playback.interval;
 	playback.time += playback.interval;
 };
 
@@ -79,13 +79,12 @@ playback.triggerSynth = function(pos, t) {;
 playback.start = function() {
 	playback.pos = 0;
 	playback.time = 0;
-	playback.startTime = audio.currentTime + .005;
+	playback.startTime = audio.currentTime + .05;
 	playback.update();
 };
 
 playback.stop = function() {
 	
-	requestAnimationFrame(draw);
 	clearTimeout(playback.id);
 }
 
