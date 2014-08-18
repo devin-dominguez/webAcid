@@ -19,7 +19,7 @@ seq.randomize = function() {
 	for(var i = 0; i < seq.size; i++) {
 		if(Math.random() < 0.8) {
 			seq.note[i] = Math.floor(Math.random() * seq.range);
-			seq.trigger[i] = Math.random() < 0.95;
+			seq.trigger[i] = Math.random() < 0.85;
 			seq.glide[i] = Math.random() < 0.25;
 		}
 	}

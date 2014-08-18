@@ -58,7 +58,7 @@ synth.adsr.connect(synth.adsrF);
 
 synth.amp = audio.createGain();
 synth.amp.gain.value = 0;
-synth.adsr.connect(synth.amp.gain);
+synth.adsrF.connect(synth.amp.gain);
 
 
 synth.filter = audio.createBiquadFilter();
@@ -70,7 +70,7 @@ synth.filter.connect(synth.amp);
 synth.cutoff = audio.createGain();
 synth.cutoff.gain.value = 2500;
 synth.cutoff.connect(synth.filter.frequency);
-synth.adsr.connect(synth.cutoff);
+synth.adsrF.connect(synth.cutoff);
 
 synth.osc = audio.createOscillator();
 synth.osc.type = "sawtooth";
@@ -95,8 +95,9 @@ synth.playNote = function(freq, glide, trigger, t) {
 	if(trigger) {
 		synth.adsr.gain.cancelScheduledValues(now)
 		//synth.adsr.gain.setValueAtTime(0, now);
+		synth.adsr.gain.setValueAtTime(0, now);
 		synth.adsr.gain.setTargetAtTime(1, now, synth.attackTime);
-		synth.adsr.gain.setTargetAtTime(0, now + (synth.attackTime * 8) , synth.decayTime);
+		synth.adsr.gain.setTargetAtTime(0, now + (synth.attackTime * 2) , synth.decayTime);
 		
 	}
 };

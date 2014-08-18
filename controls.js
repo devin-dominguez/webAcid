@@ -54,23 +54,23 @@ resonanceSlider.addEventListener("input", function() {
 
 //ATTACK
 var attackSlider = document.getElementById("attackSlider");
-attackSlider.value = synth.attackTime / .1;
+attackSlider.value = (synth.attackTime - .001) / .06;
 attackSlider.addEventListener("input", function() {
-	synth.attackTime = this.value * .1;
+	synth.attackTime = this.value * .06 + .001;
 });
 
 //RELEASE
 var releaseSlider = document.getElementById("releaseSlider");
-releaseSlider.value = synth.decayTime;
+releaseSlider.value = (synth.decayTime -.05) / .75;
 releaseSlider.addEventListener("input", function() {
-	synth.decayTime = this.value * 1;
+	synth.decayTime = this.value * .75 + .05;
 });
 
 //GLIDE
 var glideSlider = document.getElementById("glideSlider");
-glideSlider.value = synth.glideRate / .125;
+glideSlider.value = synth.glideRate / .085;
 glideSlider.addEventListener("input", function() {
-	synth.glideRate = this.value * .125;
+	synth.glideRate = this.value * .085;
 });
 
 //DELAY
