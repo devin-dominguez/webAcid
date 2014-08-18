@@ -1,9 +1,18 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audio = new AudioContext() || new webkitAudioContext();
+
+var dcKiller = audio.createBiquadFilter();
+dcKiller.type = "highpass";
+dcKiller.frequency.value = 10;
+dcKiller.Q.value = 0;
+dcKiller.connect(audio.destination);
+
 var out = audio.createGain();
 out.gain.value = .35;
-out.connect(audio.destination);
+out.connect(dcKiller);
+
+
 
 var delay = audio.createDelay();
 var delayAmp = audio.createGain();
