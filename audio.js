@@ -103,7 +103,6 @@ synth.playNote = function(freq, glide, trigger, t) {
 	
 	if(trigger) {
 		synth.adsr.gain.cancelScheduledValues(now)
-		//synth.adsr.gain.setValueAtTime(0, now);
 		synth.adsr.gain.setValueAtTime(0, now);
 		synth.adsr.gain.setTargetAtTime(1, now, synth.attackTime);
 		synth.adsr.gain.setTargetAtTime(0, now + (synth.attackTime * 2) , synth.decayTime);
