@@ -95,18 +95,16 @@ synth.amp.connect(delayAmp);
 synth.playNote = function(freq, glide, trigger, t) {
 	var now;
 	t ? now = t : now = audio.currentTime;
-	var rate = 0;
+	var rate = 0.00000001;
 	if(glide) {
 		rate = synth.glideRate;
 	}
 	synth.osc.frequency.setTargetAtTime(freq, now, rate);
-	
 	if(trigger) {
 		synth.adsr.gain.cancelScheduledValues(now)
 		synth.adsr.gain.setValueAtTime(0, now);
 		synth.adsr.gain.setTargetAtTime(1, now, synth.attackTime);
 		synth.adsr.gain.setTargetAtTime(0, now + (synth.attackTime * 2) , synth.decayTime);
-		
 	}
 };
 

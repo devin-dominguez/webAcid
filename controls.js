@@ -70,7 +70,7 @@ releaseSlider.addEventListener("input", function() {
 var glideSlider = document.getElementById("glideSlider");
 glideSlider.value = synth.glideRate / .085;
 glideSlider.addEventListener("input", function() {
-	synth.glideRate = this.value * .085;
+	synth.glideRate = this.value * .085 + .000001;
 });
 
 //DELAY
