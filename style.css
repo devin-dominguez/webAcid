@@ -1,118 +1,118 @@
 body {
-	text-transform: uppercase;
-	font-family: sans-serif;
-	text-align: center;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  text-align: center;
 }
 
 #main {
-	display: inline-block;
-	border: thin dotted black;
-	padding: 10px;
+  display: inline-block;
+  border: thin dotted black;
+  padding: 10px;
 
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 #main h1 {
-	margin-bottom: 8px;
-	margin-top: 0;
-	background-color: black;
-	color: white;
-	cursor: default;
+  margin-bottom: 8px;
+  margin-top: 0;
+  background-color: black;
+  color: white;
+  cursor: default;
 }
 
 #main a {
-	text-transform: none;
-	display: inline-block;
-	text-decoration: none;
-	color: black;
-	margin-top: 8px;
-	transition: background-color .25s, color .25s;
-	padding: 4px;
+  text-transform: none;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  margin-top: 8px;
+  transition: background-color .25s, color .25s;
+  padding: 4px;
 }
 
 #main a:hover {
-	background-color: black;
-	color: white;
+  background-color: black;
+  color: white;
 }
 
 #canvas  {
-	position: relative;
-	display: block;
-	padding: 4px;
-	border: thin solid black;
-	cursor: crosshair;
+  position: relative;
+  display: block;
+  padding: 4px;
+  border: thin solid black;
+  cursor: crosshair;
 }
 
 
 .glideCell, .noteCell {
-	border: thin solid black;
-	width: 20px;
-	height: 10px;
-	background-color: white;
-	transition: background-color .125s, opacity .125s;
+  border: thin solid black;
+  width: 20px;
+  height: 10px;
+  background-color: white;
+  transition: background-color .125s, opacity .125s;
 }
 
 #controls {
-	margin-top: 8px;
-	display: block;
-	border: thin dashed black;
-	height: 100%;
-	padding: 4px;
+  margin-top: 8px;
+  display: block;
+  border: thin dashed black;
+  height: 100%;
+  padding: 4px;
 
 }
 
 #controls p {
-	text-align: left;
-	padding: 0;
-	margin: 0;
+  text-align: left;
+  padding: 0;
+  margin: 0;
 }
 
 #transport {
-	width: 100%;
-	text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 
 
 #transport td {
-	width: 33%;
-	height: 50px;
-	border: thin solid black;
-	transition: color .125s, background-color .125s;
-	cursor: pointer;
+  width: 33%;
+  height: 50px;
+  border: thin solid black;
+  transition: color .125s, background-color .125s;
+  cursor: pointer;
 }
 
 #transport td:hover {
-	color: white;
-	background-color: black;
+  color: white;
+  background-color: black;
 }
 
 #sliders {
-	width: 100%;
-	border-collapse: none;
+  width: 100%;
+  border-collapse: none;
 }
 
 #sliders  input{
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #radios {
-	text-align: center;
-	margin: auto auto;
+  text-align: center;
+  margin: auto auto;
 }
 
 #radios input {
-	display: inline-block;
-	width: 40%;
-	height: 100%;
-	cursor: pointer;
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  cursor: pointer;
 }
 
 #sliders td {
-	height: 100%;
-	padding: 0 8px;
-	margin: 0px;
-	cursor: default;
+  height: 100%;
+  padding: 0 8px;
+  margin: 0px;
+  cursor: default;
 }

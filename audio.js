@@ -14,21 +14,21 @@ dcKiller.Q.value = 0;
 dcKiller.connect(audio.destination);
 
 var out = audio.createGain();
-out.gain.value = .35;
+out.gain.value = 0.35;
 out.connect(dcKiller);
 
 var delay = audio.createDelay();
 var delayAmp = audio.createGain();
 var delayFb = audio.createGain();
 
-delayFb.gain.value = .5;
+delayFb.gain.value = 0.5;
 delayFb.connect(out);
 delayFb.connect(delay);
 delay.connect(delayFb);
 delayAmp.connect(delay);
-delayAmp.gain.value = .25;
+delayAmp.gain.value = 0.25;
 
-delay.delayTime.value = .5;
+delay.delayTime.value = 0.5;
 
 // -------------------------------------------------
 // CONTROL VOLTAGE HACKINESS
@@ -65,10 +65,10 @@ sig.start = sig.start || sig.noteOn;
 sig.start(0);
 
 var synth = {
-  attackTime: .01,
-  sustainTime: .1,
-  decayTime: .25,
-  glideRate: .05
+  attackTime: 0.01,
+  sustainTime: 0.1,
+  decayTime: 0.25,
+  glideRate: 0.05
 };
 
 // -------------------------------------------------
@@ -129,17 +129,17 @@ synth.amp.connect(delayAmp);
 // -------------------------------------------------
 
 synth.playNote = function(freq, glide, trigger, t) {
-	var now = t || audio.currentTime;
-  var rate = glide ? synth.glideRate : .0000000001;
+  var now = t || audio.currentTime;
+  var rate = glide ? synth.glideRate : 0.0000000001;
 
-	synth.osc.frequency.setTargetAtTime(freq, now, rate);
+  synth.osc.frequency.setTargetAtTime(freq, now, rate);
 
-	if(trigger) {
-		synth.adsr.gain.cancelScheduledValues(now);
-		synth.adsr.gain.setValueAtTime(0, now);
-		synth.adsr.gain.setTargetAtTime(1, now, synth.attackTime);
-		synth.adsr.gain.setTargetAtTime(0, now + (synth.attackTime * 2), synth.decayTime);
-	}
+  if(trigger) {
+    synth.adsr.gain.cancelScheduledValues(now);
+    synth.adsr.gain.setValueAtTime(0, now);
+    synth.adsr.gain.setTargetAtTime(1, now, synth.attackTime);
+    synth.adsr.gain.setTargetAtTime(0, now + (synth.attackTime * 2), synth.decayTime);
+  }
 };
 
 
