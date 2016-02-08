@@ -2,17 +2,16 @@ body {
 	text-transform: uppercase;
 	font-family: sans-serif;
 	text-align: center;
-
 }
 
 #main {
 	display: inline-block;
 	border: thin dotted black;
 	padding: 10px;
-	
+
 	-webkit-user-select: none;
 	-moz-user-select: none;
-	user-select: none;  
+	user-select: none;
 }
 
 #main h1 {
@@ -93,32 +92,27 @@ body {
 #sliders {
 	width: 100%;
 	border-collapse: none;
-
-	
 }
+
 #sliders  input{
 	cursor: pointer;
 }
 
-#radios{
+#radios {
 	text-align: center;
 	margin: auto auto;
-	
 }
 
-#radios input{
+#radios input {
 	display: inline-block;
 	width: 40%;
 	height: 100%;
 	cursor: pointer;
 }
 
-#sliders td{
-	
+#sliders td {
 	height: 100%;
 	padding: 0 8px;
 	margin: 0px;
 	cursor: default;
-	
-
 }
