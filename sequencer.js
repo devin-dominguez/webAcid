@@ -23,7 +23,7 @@ seq.randomize = function() {
 			seq.glide[i] = Math.random() < 0.25;
 		}
 	}
-}
+};
 
 seq.randomize();
 
@@ -49,9 +49,9 @@ playback.increment = function() {
 
 playback.update = function() {
 	var currentTime = audio.currentTime;
-	currentTime -= playback.startTime; 
+	currentTime -= playback.startTime;
 	while(playback.time < currentTime + playback.lookahead) {
-		var playTime = playback.time + playback.startTime;	
+		var playTime = playback.time + playback.startTime;
 		playback.triggerSynth(playback.pos, playTime);
 		playback.increment();
 
@@ -68,13 +68,13 @@ playback.update = function() {
 	playback.id = setTimeout(playback.update, 0);
 };
 
-playback.triggerSynth = function(pos, t) {;
+playback.triggerSynth = function(pos, t) {
 	if(seq.note[pos] !== null) {
 		var freq = mtof(seq.note[pos]);
 		synth.playNote(freq, seq.glide[pos], seq.trigger[pos], t);
-	
+
 	}
-}
+};
 
 playback.start = function() {
 	playback.pos = 0;
@@ -84,9 +84,9 @@ playback.start = function() {
 };
 
 playback.stop = function() {
-	
+
 	clearTimeout(playback.id);
-}
+};
 
 var scale = [1, 16/15, 4/3, 3/2, 8/5];
 function mtof(m) {
@@ -95,5 +95,3 @@ function mtof(m) {
 	var freq = 60 * pitch * Math.pow(2, octave);
 	return freq;
 }
-
-
