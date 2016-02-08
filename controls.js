@@ -1,99 +1,60 @@
+function sliderControl(id, target, property, min, max) {
+  var slider = document.getElementById(id);
+  var range = max - min;
+
+  // init gui
+  slider.value = (target[property] - min) / range;
+
+  slider.addEventListener("input", function() {
+    target[property] = slider.value * range + min;
+  });
+}
+
+sliderControl("cutoffSlider", synth.cutoff.gain, 'value', 20, 5000);
+sliderControl("resonanceSlider", synth.filter.Q, 'value', 0, 12);
+sliderControl("attackSlider", synth, 'attackTime', 0.001, 0.06);
+sliderControl("releaseSlider", synth, 'decayTime', 0.05, 0.75);
+sliderControl("glideSlider", synth, 'glideRate', 0.0000000001, 0.085);
+sliderControl("delaySlider", delayAmp, 'gain.value', 0, 0.75);
+sliderControl("volumeSlider", out.gain, 'value', 0, 0.35);
+sliderControl("tempoSlider", playback, 'tempo', 40, 300);
+
 // gui buttons
 var playButton = document.getElementById("playButton");
 playButton.addEventListener("click", function() {
-
-		if(!playback.playing) {
-			playback.playing = true;
-			playback.start();
-			this.innerHTML = "Stop";
-		}
-		else {
-			playback.playing = false;
-			playback.stop();
-			this.innerHTML = "Play";
-			requestAnimationFrame(draw);
-		}
+  if(!playback.playing) {
+    playback.playing = true;
+    playback.start();
+    this.innerHTML = "Stop";
+  }
+  else {
+    playback.playing = false;
+    playback.stop();
+    this.innerHTML = "Play";
+    requestAnimationFrame(draw);
+  }
 });
 
 var clearButton = document.getElementById("clearButton");
 clearButton.addEventListener("click", function() {
-	seq.init();
-	requestAnimationFrame(draw);
+  seq.init();
+  requestAnimationFrame(draw);
 });
 
 var randomButton = document.getElementById("randomButton");
 randomButton.addEventListener("click", function() {
-	seq.randomize();
-	requestAnimationFrame(draw);
+  seq.randomize();
+  requestAnimationFrame(draw);
 });
 
 //WAVEFORM
 var squareRadio = document.getElementById("squareRadio");
 squareRadio.addEventListener("change", function() {
-	synth.osc.type = "square";
+  synth.osc.type = "square";
 });
 
 var sawRadio = document.getElementById("sawRadio");
 sawRadio.addEventListener("change", function() {
-	synth.osc.type = "sawtooth";
+  synth.osc.type = "sawtooth";
 });
-
-//CUTOFF
-var cutoffSlider = document.getElementById("cutoffSlider");
-cutoffSlider.value = (synth.cutoff.gain.value - 20) / 5000;
-cutoffSlider.addEventListener("input", function() {
-	synth.cutoff.gain.value = this.value * 5000 + 20;
-});
-
-//RESONANCE
-var resonanceSlider = document.getElementById("resonanceSlider");
-resonanceSlider.value = synth.filter.Q.value / 12;
-resonanceSlider.addEventListener("input", function() {
-	synth.filter.Q.value = this.value * 12;
-});
-
-//ATTACK
-var attackSlider = document.getElementById("attackSlider");
-attackSlider.value = (synth.attackTime - .001) / .06;
-attackSlider.addEventListener("input", function() {
-	synth.attackTime = this.value * .06 + .001;
-});
-
-//RELEASE
-var releaseSlider = document.getElementById("releaseSlider");
-releaseSlider.value = (synth.decayTime -.05) / .75;
-releaseSlider.addEventListener("input", function() {
-	synth.decayTime = this.value * .75 + .05;
-});
-
-//GLIDE
-var glideSlider = document.getElementById("glideSlider");
-glideSlider.value = synth.glideRate / .085;
-glideSlider.addEventListener("input", function() {
-	synth.glideRate = this.value * .085 + .000001;
-});
-
-//DELAY
-var delaySlider = document.getElementById("delaySlider");
-delaySlider.value = delayAmp.gain.value / .75;
-delaySlider.addEventListener("input", function() {
-	delayAmp.gain.value = this.value * .75;
-});
-
-//VOLUME
-var volumeSlider = document.getElementById("volumeSlider");
-volumeSlider.value = out.gain.value / .35;
-volumeSlider.addEventListener("input", function() {
-	out.gain.value = this.value * .35;
-});
-
-//TEMPO
-var tempoSlider = document.getElementById("tempoSlider");
-tempoSlider.value = (playback.tempo - 40) / 260;
-	tempoSlider.addEventListener("input", function() {
-		playback.tempo = tempoSlider.value * 260 + 40;
-});
-
-
-
 

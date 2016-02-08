@@ -1,6 +1,5 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-var AudioContext = AudioContext || webkitAudioContext;
 var audio = new AudioContext();
 
 // -------------------------------------------------
