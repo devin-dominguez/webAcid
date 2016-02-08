@@ -15,7 +15,7 @@ sliderControl("resonanceSlider", synth.filter.Q, 'value', 0, 12);
 sliderControl("attackSlider", synth, 'attackTime', 0.001, 0.06);
 sliderControl("releaseSlider", synth, 'decayTime', 0.05, 0.75);
 sliderControl("glideSlider", synth, 'glideRate', 0.0000000001, 0.085);
-sliderControl("delaySlider", delayAmp, 'gain.value', 0, 0.75);
+sliderControl("delaySlider", delayAmp.gain, 'value', 0, 0.75);
 sliderControl("volumeSlider", out.gain, 'value', 0, 0.35);
 sliderControl("tempoSlider", playback, 'tempo', 40, 300);
 
